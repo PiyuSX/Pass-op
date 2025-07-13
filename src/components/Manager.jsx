@@ -1,0 +1,49 @@
+import { useState } from "react"
+
+import { Eye, EyeOff } from "lucide-react";
+
+const Manager = () => {
+    const [showPassword, setShowPassword] = useState(false)
+  return (
+    <div>
+      <div class="absolute top-0 z-[-2] h-screen w-screen bg-[#393E46] bg-[radial-gradient(#ffffff33_1px,#222831_1px)] bg-[size:20px_20px]"></div>
+      <div className="flex flex-col items-center mt-20">
+        <div className="text-center">
+          <h1 className="text-4xl font-bold text-[#ffffff] ">
+            <span className="text-[#00ADB5]">&lt;</span>
+            Pass
+            <span className="text-[#00ADB5]">OP/&gt;</span>
+          </h1>
+          <p className="text-[#EEEEEE]  mt-2">
+            One Solution For Pass Management
+          </p>
+        </div>
+        <div className="mt-10 flex flex-col gap-5">
+          <div className="flex flex-col">
+            <input className="bg-[#EEEEEE] p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#00ADB5]" placeholder="Enter Site URL" type="text" />
+          </div>
+          <div className="flex flex-row gap-3">
+            <input className="bg-[#EEEEEE] p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#00ADB5]" placeholder="Username" type="text" />
+            <div className="relative">
+            <input className="bg-[#EEEEEE] p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#00ADB5]" placeholder="Password" type="text" />
+            <button className="absolute right-0 top-2" onClick={()=> setShowPassword(!showPassword)}>
+              {showPassword ? <Eye /> : <EyeOff />}
+            </button>
+            </div>
+          </div>
+          <div className="flex justify-center items-center m-4">
+            <button className="flex items-center justify-center bg-[#00ADB5] p-1 px-2 rounded-lg hover:bg-[#00ADB5]/90 text-white">
+              <lord-icon
+                src="https://cdn.lordicon.com/efxgwrkc.json"
+                trigger="hover"
+              ></lord-icon>
+              Add Password
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Manager;

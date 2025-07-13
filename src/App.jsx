@@ -1,8 +1,13 @@
 import React from 'react'
+import Navbar from './components/Navbar.jsx'
+import Manager from './components/Manager.jsx'
 
 const App = () => {
   return (
-    <div className='text-amber-200'>App</div>
+    <>
+      <Navbar />
+      <Manager />
+    </>
   )
 }
 
