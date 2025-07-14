@@ -1,3 +1,5 @@
+import Table from "./Table"
+
 import { useState, useEffect } from "react"
 
 import { Eye, EyeOff } from "lucide-react";
@@ -28,11 +30,15 @@ const Manager = () => {
     const savePassword = () => {
         setPasswordArray([...passwordArray, form])
         localStorage.setItem("passwords", JSON.stringify([...passwordArray, form]))
-        console.log([...passwordArray, form])
+        setForm({
+            siteUrl: "",
+            username: "",
+            password: ""
+        })
     }
   return (
     <div>
-      <div class="absolute top-0 z-[-2] h-screen w-screen bg-[#393E46] bg-[radial-gradient(#ffffff33_1px,#222831_1px)] bg-[size:20px_20px]"></div>
+      <div className="absolute top-0 z-[-2] h-screen w-screen bg-[#393E46] bg-[radial-gradient(#ffffff33_1px,#222831_1px)] bg-[size:20px_20px]"></div>
       <div className="flex flex-col items-center mt-20">
         <div className="text-center">
           <h1 className="text-4xl font-bold text-[#ffffff] ">
@@ -51,10 +57,10 @@ const Manager = () => {
           <div className="flex flex-row gap-3">
             <input name="username" value={form.username} onChange={handleChange} className="bg-[#EEEEEE] p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#00ADB5]" placeholder="Username" type="text" />
             <div className="relative">
-            <input name="password" value={form.password} onChange={handleChange} className="bg-[#EEEEEE] p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#00ADB5]" placeholder="Password" type="text" />
-            <button className="absolute right-0 top-2" onClick={()=> setShowPassword(!showPassword)}>
-              {showPassword ? <Eye /> : <EyeOff />}
-            </button>
+              <input name="password" value={form.password} onChange={handleChange} className="bg-[#EEEEEE] p-2  rounded-lg focus:outline-none focus:ring-2 focus:ring-[#00ADB5]" placeholder="Password" type={showPassword ? "text" : "password"} />
+              <button className="absolute right-1 top-2" type="button" onClick={()=> setShowPassword(!showPassword)}>
+                {showPassword ? <Eye /> : <EyeOff />}
+              </button>
             </div>
           </div>
           <div className="flex justify-center items-center m-4">
@@ -67,9 +73,12 @@ const Manager = () => {
             </button>
           </div>
         </div>
+        <div>
+          <Table passwordArray={passwordArray} />
+        </div>
       </div>
     </div>
   );
-};
+}
 
 export default Manager;

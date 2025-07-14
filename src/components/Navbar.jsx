@@ -1,4 +1,4 @@
-import React from 'react'
+import { Github } from "lucide-react";
 
 const Navbar = () => {
   return (
@@ -10,10 +10,10 @@ const Navbar = () => {
                 <span className='text-[#00ADB5]'>OP/&gt;</span>
             </h1>
         </div>
-        <ul className='flex gap-5'>
-            <li className='hover:font-bold cursor-pointer'>Home</li>
-            <li className='hover:font-bold cursor-pointer'>About</li>
-        </ul>
+        <a className='flex gap-2 items-center' href="https://github.com/PiyuSX" target="_blank" >
+            <span className='text-[#393E46] font-bold'>Github</span>
+            <Github className='text-[#00ADB5]' />
+        </a>
     </nav>
   )
 }
