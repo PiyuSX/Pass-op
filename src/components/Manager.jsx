@@ -35,7 +35,7 @@ const Manager = () => {
     }
     
     const savePassword = () => {
-       if( true) {
+       if( form.siteUrl && form.username && form.password) {
              setPasswordArray([...passwordArray, {...form, id: uuidv4()}])
         localStorage.setItem("passwords", JSON.stringify([...passwordArray, {...form, id: uuidv4()}]))
         setForm({

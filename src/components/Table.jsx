@@ -1,6 +1,6 @@
-import { Copy, Pencil, Trash } from "lucide-react";
-import { ToastContainer, toast, Bounce } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css'; // ✅ important
+import { Copy, Pencil, Trash } from "lucide-react"
+import { ToastContainer, toast, Bounce } from "react-toastify"
+import 'react-toastify/dist/ReactToastify.css'
 
 const Table = ({ passwordArray, setPasswordArray, setForm }) => {
   const handleCopy = (item) => {
