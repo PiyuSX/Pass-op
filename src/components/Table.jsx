@@ -1,13 +1,37 @@
 import { Copy } from "lucide-react";
+import { ToastContainer, toast, Bounce } from "react-toastify";
 
 const Table = ({ passwordArray }) => {
   const handleCopy = (item) => {
     navigator.clipboard.writeText(item);
+    toast.success('Password copied to clipboard!', {
+      position: "bottom-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: false,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      transition: Bounce,
+    })
   }
 
   return (
     <>
-       
+       <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick={false}
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        transition={Bounce}
+      /> 
       <div className="mt-10 w-full px-5 overflow-x-auto">
         <div className="max-w-7xlxl mx-auto">
           <table className="w-full text-center bg-[#EEEEEE] rounded-lg shadow-lg overflow-hidden">
