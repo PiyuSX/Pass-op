@@ -2,7 +2,12 @@ import Table from "./Table"
 
 import { useState, useEffect } from "react"
 
-import { Eye, EyeOff } from "lucide-react";
+import { Eye, EyeOff } from "lucide-react"
+
+import { v4 as uuidv4 } from "uuid"
+
+import { ToastContainer, toast, Bounce } from "react-toastify";
+
 
 
 
@@ -30,19 +35,48 @@ const Manager = () => {
     }
     
     const savePassword = () => {
-        setPasswordArray([...passwordArray, form])
-        localStorage.setItem("passwords", JSON.stringify([...passwordArray, form]))
+       if( true) {
+             setPasswordArray([...passwordArray, {...form, id: uuidv4()}])
+        localStorage.setItem("passwords", JSON.stringify([...passwordArray, {...form, id: uuidv4()}]))
         setForm({
             siteUrl: "",
             username: "",
             password: ""
         })
+
+      } else {
+          toast.error('Please fill all fields!', {
+            position: "bottom-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: false,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            transition: Bounce,
+          })
+        }
     }
   return (
     <div>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick={false}
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        transition={Bounce}
+      /> 
       <div className="absolute top-0 z-[-2] h-screen w-screen bg-[#393E46] bg-[radial-gradient(#ffffff33_1px,#222831_1px)] bg-[size:20px_20px]"></div>
-      <div className="flex flex-col items-center mt-20">
-        <div className="text-center">
+      <div className="flex flex-col mx-2 lg:flex-row  mt-20 lg:justify-center gap-10 lg:gap-20">
+        <div>
+           <div className="text-center">
           <h1 className="text-4xl font-bold text-[#ffffff] ">
             <span className="text-[#00ADB5]">&lt;</span>
             Pass
@@ -75,12 +109,13 @@ const Manager = () => {
             </button>
           </div>
         </div>
+        </div>
         <div>
-          <Table passwordArray={passwordArray} />
+          <Table passwordArray={passwordArray} setPasswordArray={setPasswordArray} form={form} setForm={setForm} />
         </div>
       </div>
     </div>
   );
 }
 
-export default Manager;
+export default Manager
